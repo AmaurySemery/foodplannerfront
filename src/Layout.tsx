@@ -4,8 +4,8 @@ function Layout() {
     return (
         <>
             <nav className="navbar">
-                <NavLink to='/home'>Home</NavLink>
-                <NavLink to='/login'>Login</NavLink>
+                <NavLink to='/home'>Home</NavLink>{'  '}
+                <NavLink to='/login'>Login</NavLink>{'  '}
             </nav>
             <div className="main">
                 <Outlet />
