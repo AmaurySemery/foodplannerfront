@@ -1,8 +1,9 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
+import Layout from './assets/Layout'
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path='/' element={}
+  <Route path='/' element={<Layout />} />
 ))
 
 function App() {
