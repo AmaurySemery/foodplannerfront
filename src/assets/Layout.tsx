@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 
 function Layout() {
     return (
@@ -7,6 +7,9 @@ function Layout() {
                 <NavLink to='/home'>Home</NavLink>
                 <NavLink to='/login'>Login</NavLink>
             </nav>
+            <div className="main">
+                <Outlet />
+            </div>
         </>
     )
 }
