@@ -3,11 +3,12 @@ import './App.css'
 import Layout from './Layout'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import { loginAction } from './components/FormLogin'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
     <Route path='home' element={<Home />} />
-    <Route path='login' element={<Login />} />
+    <Route path='login' element={<Login />} action={loginAction} />
   </Route>
 ))
 
