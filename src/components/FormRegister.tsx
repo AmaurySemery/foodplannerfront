@@ -6,11 +6,11 @@ function FormRegister() {
             <Form action="/register" method="post">
                 <input type="text" name="username" placeholder="user name" />
                 <br />
-                <input type="email" name="email" />
+                <input type="email" name="email" placeholder="email" />
                 <br />
-                <input type="password" name="password" />
+                <input type="password" name="password" placeholder="password" />
                 <br />
-                <input type="password" name="confirmpass" />
+                <input type="password" name="confirmpass" placeholder="confirm password" />
                 <br />
                 <button type="submit">Register</button>
             </Form>
