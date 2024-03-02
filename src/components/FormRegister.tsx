@@ -24,7 +24,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
     const username = data.get('username')
     const email = data.get('email')
     const password = data.get('password')
-    const confirmpass = data.get('confirmpass')
+    // const confirmpass = data.get('confirmpass')
 
     const strapiRegisterUrl = 'http://localhost:1337/api/auth/local/register'
 
