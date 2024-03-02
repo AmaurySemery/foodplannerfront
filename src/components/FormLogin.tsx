@@ -20,6 +20,27 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
     const password = data.get('password')
     console.log({ email, password })
 
+    // Ci-dessous, des particularités strapi comportant quelques pièges peu intuitifs
+
+    const strapiUrl = "http://localhost:1337/api/auth/local"
+
+    const loginData = {
+        identifier: email,
+        password,
+    }
+
+    const login = await fetch(strapiUrl, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData)
+    })
+
+    const loginResponseData = await login.json()
+    console.log({ loginResponseData })
+
     return null
 }
 
