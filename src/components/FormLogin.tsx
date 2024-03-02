@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, Form } from "react-router-dom"
+import { ActionFunctionArgs, Form, Link } from "react-router-dom"
 
 const FormLogin = () => {
     return (
@@ -9,6 +9,7 @@ const FormLogin = () => {
                 <input type="password" name="password" placeholder="password" />
                 <br />
                 <button type="submit">login</button>
+                <Link to='/register'>No account ? Register</Link>
             </Form>
         </>
     )
