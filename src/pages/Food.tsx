@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import FoodItem from "../interfaces/FoodItem"
+import FoodCard from "../components/FoodCard"
 
 const Page = () => {
   // Le ?populate=* permet d'accéder à la jointure
@@ -33,7 +34,7 @@ const Page = () => {
   return (
     <>
     <h3>Food</h3>
-    {JSON.stringify(foodList)}
+    {foodList && foodList.map(item => (<FoodCard item={item} key={item.id} />))}
     </>
   )
 }
