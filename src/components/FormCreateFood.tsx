@@ -34,8 +34,8 @@ const FormCreateFood = () => {
             <input type="text" name="name" placeholder="food name" />
             <br />
             <select name="category">
-                <option value="">choose a category</option>
-                { foodCategoryList && foodCategoryList.map(item => (<option value={item.categoryId} key={item.categoryId}>{item.categoryName}</option>)) }
+                <option value={0}>choose a category</option>
+                { foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>)) }
             </select>
             <br />
             <button type="submit">add</button>
@@ -47,16 +47,16 @@ const FormCreateFood = () => {
 export const foodCreateAction = async ({request}: ActionFunctionArgs) => {
     const data = await request.formData()
     const name = data.get('name')
-    const category = data.get('category')
+    const category = data.get('category') || 0
 
     const email = localStorage.getItem('logged-in-user-email')
 
     const foodItem = {
         data: {
-            name,
-            email,
-            food_category: category,
-            dateadded: new Date().toISOString()
+            Name: name,
+            Email: email,
+            foodcategory: parseInt(category.toString(), 10),
+            DateAdded: new Date().toISOString()
         }
     }
 
