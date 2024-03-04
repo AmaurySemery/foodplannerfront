@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import FoodCategory from "../interfaces/FoodCategory"
+import { Form } from "react-router-dom"
 
 const FormCreateFood = () => {
     const [foodCategoryList, setFoodCategoryList] = useState<FoodCategory[]>([])
@@ -29,7 +30,14 @@ const FormCreateFood = () => {
 
   return (
     <>
-    {JSON.stringify(foodCategoryList, null, 2)}
+        <Form action='create-food' method='POST'>
+            <input type="text" name="name" placeholder="food name" />
+            <br />
+            <select name="category">
+                <option value="">choose a category</option>
+                { foodCategoryList && foodCategoryList.map(item => (<option value={item.categoryId}>{item.categoryName}</option>)) }
+            </select>
+        </Form>
     </>
   )
 }
