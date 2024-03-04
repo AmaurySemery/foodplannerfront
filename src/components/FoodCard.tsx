@@ -1,3 +1,4 @@
+import { add } from "date-fns"
 import FoodItem from "../interfaces/FoodItem"
 import styles from './fooditem.module.css'
 
@@ -14,7 +15,7 @@ function FoodCard({ item }: Props) {
     <div className={styles.card}>
         <h3>{item.name}</h3>
         <div>Date added: {niceDate(item.dateAdded)}</div>
-        <div>Max stay in freezer: {item.maxStayInFreezerInMonth} months</div>
+        <div>Max stay in freezer: {add(item.dateAdded, {months : item.maxStayInFreezerInMonth}).toISOString()} months</div>
         <div>Category: {item.foodCategory}</div>
     </div>
   )
