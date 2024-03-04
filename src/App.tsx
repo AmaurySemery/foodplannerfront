@@ -8,6 +8,7 @@ import { registerAction } from './components/FormRegister'
 import Register from './pages/Register'
 import Food from './pages/Food'
 import FoodCreate from './pages/FoodCreate'
+import { foodCreateAction } from './components/FormCreateFood'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
@@ -15,7 +16,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='login' element={<Login />} action={loginAction} />
     <Route path='register' element={<Register />} action={registerAction} />
     <Route path='foodlist' element={<Food />} />
-    <Route path='food-create' element={<FoodCreate />} />
+    <Route path='food-create' element={<FoodCreate />} action={foodCreateAction} />
   </Route>
 ))
 

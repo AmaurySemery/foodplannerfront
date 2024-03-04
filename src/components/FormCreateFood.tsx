@@ -44,4 +44,6 @@ const FormCreateFood = () => {
   )
 }
 
+export const foodCreateAction = async () => {}
+
 export default FormCreateFood
