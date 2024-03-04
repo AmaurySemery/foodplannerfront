@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react"
 import FoodItem from "../interfaces/FoodItem"
 import FoodCard from "../components/FoodCard"
+import { useNavigate } from "react-router-dom"
 
 const Page = () => {
   // Le ?populate=* permet d'accéder à la jointure
   // const foodListUrl = 'http://localhost:1337/api/foodlist?populate=*'
+  const navigate = useNavigate()
   const anonymous = 'ano@t.fr'
   const ownerEmail = localStorage.getItem('logged-in-user-email') || anonymous
   const foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`
   const [foodList, setFoodList] = useState<FoodItem[]>([])
   useEffect(() => {
+    if (ownerEmail === anonymous) {
+      navigate('/login')
+    }
     const getFoodList = async () => {
       const res = await fetch(foodListUrl)
       const jsonData = await res.json()
