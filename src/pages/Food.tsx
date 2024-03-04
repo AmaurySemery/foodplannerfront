@@ -31,8 +31,8 @@ const Page = () => {
         id: item.id,
         name: item.attributes.Name,
         dateAdded: new Date(item.attributes.DateAdded),
-        foodCategory: item.attributes["food_category"].data.attributes.Name,
-        maxStayInFreezerInMonth: item.attributes["food_category"].data.attributes.MaxStayInFreezer
+        foodCategory: item.attributes.foodcategory.data.attributes.Name,
+        maxStayInFreezerInMonth: item.attributes.foodcategory.data.attributes.MaxStayInFreezer
 
       }
       return foodItem
