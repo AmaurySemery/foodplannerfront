@@ -37,6 +37,8 @@ const FormCreateFood = () => {
                 <option value="">choose a category</option>
                 { foodCategoryList && foodCategoryList.map(item => (<option value={item.categoryId} key={item.categoryId}>{item.categoryName}</option>)) }
             </select>
+            <br />
+            <button type="submit">add</button>
         </Form>
     </>
   )
