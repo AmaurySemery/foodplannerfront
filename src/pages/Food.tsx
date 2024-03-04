@@ -5,7 +5,7 @@ import FoodCard from "../components/FoodCard"
 const Page = () => {
   // Le ?populate=* permet d'accéder à la jointure
   // const foodListUrl = 'http://localhost:1337/api/foodlist?populate=*'
-  const ownerEmail = 'sam@t.fr'
+  const ownerEmail = localStorage.getItem('logged-in-user-email')
   const foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`
   const [foodList, setFoodList] = useState<FoodItem[]>([])
   useEffect(() => {
