@@ -8,7 +8,7 @@ function Layout() {
                 <NavLink to='/login'>Login</NavLink>{'  '}
                 <NavLink to='/register'>Register</NavLink>{'  '}
                 <NavLink to='/foodlist'>Food</NavLink>{'  '}
-                <NavLink to='/food-create'>Add Food</NavLink>{'  '}
+                <NavLink to='/foodcreate'>Add Food</NavLink>{'  '}
             </nav>
             <div className="main">
                 <Outlet />

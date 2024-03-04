@@ -16,7 +16,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='login' element={<Login />} action={loginAction} />
     <Route path='register' element={<Register />} action={registerAction} />
     <Route path='foodlist' element={<Food />} />
-    <Route path='food-create' element={<FoodCreate />} action={foodCreateAction} />
+    <Route path='foodcreate' element={<FoodCreate />} action={foodCreateAction} />
   </Route>
 ))
 
