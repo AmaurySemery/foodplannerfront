@@ -41,6 +41,7 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
 
     const loginResponseData = await login.json()
     console.log({ loginResponseData })
+    localStorage.setItem('logged-in-user-email', loginResponseData.user.email)
 
     return null
 }
