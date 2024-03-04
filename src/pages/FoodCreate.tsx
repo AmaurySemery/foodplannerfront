@@ -1,6 +1,8 @@
 const FoodCreate = () => {
   return (
-    <div>FoodCreate</div>
+    <>
+    <h3>Add Food Item</h3>
+    </>
   )
 }
 
