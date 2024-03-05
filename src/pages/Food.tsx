@@ -47,7 +47,7 @@ const Page = () => {
         'Accept': 'application/json'
       }
     })
-    const jsonDeleteRes = deleteRes.json()
+    const jsonDeleteRes = await deleteRes.json()
     console.log({ jsonDeleteRes })
   }
 
