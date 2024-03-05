@@ -55,7 +55,7 @@ const FormCreateFood = ({ item }: Props) => {
             <br />
             <select name="category" onChange={onCategoryChange}>
                 <option value={0}>choose a category</option>
-                {foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>))}
+                {foodCategoryList && foodCategoryList.map(categoryItem => (<option value={categoryItem.id} key={categoryItem.id} selected={categoryItem.categoryId === foodItemCategory}>{categoryItem.categoryName}</option>))}
             </select>
             <br />
             <button type="submit">add</button>
