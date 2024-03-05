@@ -9,7 +9,10 @@ interface Props {
 
 const FormCreateFood = ({ item }: Props) => {
     const [foodCategoryList, setFoodCategoryList] = useState<FoodCategory[]>([])
+
     const [foodItemName, setFoodItemName] = useState<string>(item?.name || '')
+    const [foodItemCategory, setFoodItemCategory] = useState<string>(item?.foodCategory || '')
+
     const strapiFoodCategoryURL = 'http://localhost:1337/api/food-categories'
 
     useEffect(() => {
@@ -36,13 +39,21 @@ const FormCreateFood = ({ item }: Props) => {
 
     const isUpdate = item ? true : false
 
+    function onNameChange(e: React.FormEvent<HTMLInputElement>) {
+        setFoodItemName(e.currentTarget.value)
+    }
+
+    function onCategoryChange(e: React.FormEvent<HTMLSelectElement>) {
+        setFoodItemCategory(e.currentTarget.value)
+    }
+
     return (
         <>
         {isUpdate && (
             <Form action='/foodcreate' method='POST'>
-            <input type="text" name="name" placeholder="food name" value={foodItemName} />
+            <input type="text" name="name" placeholder="food name" value={foodItemName} onChange={onNameChange} />
             <br />
-            <select name="category">
+            <select name="category" onChange={onCategoryChange}>
                 <option value={0}>choose a category</option>
                 {foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>))}
             </select>

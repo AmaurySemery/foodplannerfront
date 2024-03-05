@@ -58,7 +58,7 @@ function FoodCard({ item, deleteItem }: Props) {
           modal: 'customModal'
         }} center>
           <h2>Update {item.name}</h2>
-          <FormCreateFood />
+          <FormCreateFood item={item} />
         </Modal>
       </div>
 
