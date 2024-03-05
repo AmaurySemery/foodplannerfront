@@ -46,6 +46,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
     const registerResponseData = await register.json()
     console.log({ registerResponseData })
 
+    location.replace('/foodlist')
     return null
 }
 

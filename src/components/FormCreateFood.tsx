@@ -71,6 +71,7 @@ export const foodCreateAction = async ({request}: ActionFunctionArgs) => {
     })
 
     console.log({ createdFoodItem })
+    location.replace('/foodlist')
     return null
 }
 

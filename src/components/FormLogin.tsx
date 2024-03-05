@@ -43,6 +43,7 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
     console.log({ loginResponseData })
     localStorage.setItem('logged-in-user-email', loginResponseData.user.email)
 
+    location.replace('/foodlist')
     return null
 }
 
