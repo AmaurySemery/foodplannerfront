@@ -13,9 +13,13 @@ interface Props {
 
 function FoodCard({ item, deleteItem }: Props) {
   const [open, setOpen] = useState(false)
+  const [openUpdate, setOpenUpdate] = useState(false)
 
   const onOpenModal = () => setOpen(true)
   const onCloseModal = () => setOpen(false)
+
+  const onOpenUpdateModal = () => setOpenUpdate(true)
+  const oncloseUpdateModal = () => setOpenUpdate(false)
 
   function niceDate(date: Date): string {
     return date.toISOString().split('T')[0]
@@ -45,6 +49,14 @@ function FoodCard({ item, deleteItem }: Props) {
             <br /><br />
             <button onClick={() => deleteFoodItem(item.id)}>Delete</button>{' '} <button onClick={onCloseModal}>Cancel</button>
           </p>
+        </Modal>
+        {' '}
+        <button onClick={onOpenUpdateModal}>Update</button>
+        <Modal open={openUpdate} onClose={oncloseUpdateModal} classNames={{
+          overlay: 'customOverlay',
+          modal: 'customModal'
+        }} center>
+          {JSON.stringify(item, null, 2)}
         </Modal>
       </div>
 
