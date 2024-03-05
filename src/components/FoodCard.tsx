@@ -5,6 +5,7 @@ import styles from './fooditem.module.css'
 
 import 'react-responsive-modal/styles.css'
 import Modal from "react-responsive-modal"
+import FormCreateFood from "./FormCreateFood"
 
 interface Props {
   item: FoodItem;
@@ -56,7 +57,8 @@ function FoodCard({ item, deleteItem }: Props) {
           overlay: 'customOverlay',
           modal: 'customModal'
         }} center>
-          {JSON.stringify(item, null, 2)}
+          <h2>Update {item.name}</h2>
+          <FormCreateFood />
         </Modal>
       </div>
 
