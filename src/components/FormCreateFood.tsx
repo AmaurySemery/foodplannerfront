@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
 import FoodCategory from "../interfaces/FoodCategory"
 import { ActionFunctionArgs, Form } from "react-router-dom"
+import FoodItem from "../interfaces/FoodItem"
 
-const FormCreateFood = () => {
+interface Props {
+    item?: FoodItem
+}
+
+const FormCreateFood = ({ item }: Props) => {
     const [foodCategoryList, setFoodCategoryList] = useState<FoodCategory[]>([])
+    const [foodItemName, setFoodItemName] = useState<string>(item?.name || '')
     const strapiFoodCategoryURL = 'http://localhost:1337/api/food-categories'
 
     useEffect(() => {
-        const getFoodCategoryList = async() => {
+        const getFoodCategoryList = async () => {
             const res = await fetch(strapiFoodCategoryURL)
             const jsonData = await res.json()
             const parsedResult = foodCategoriesFromArray(jsonData.data)
@@ -28,23 +34,39 @@ const FormCreateFood = () => {
         })
     }
 
-  return (
-    <>
-        <Form action='/foodcreate' method='POST'>
-            <input type="text" name="name" placeholder="food name" />
+    const isUpdate = item ? true : false
+
+    return (
+        <>
+        {isUpdate && (
+            <Form action='/foodcreate' method='POST'>
+            <input type="text" name="name" placeholder="food name" value={foodItemName} />
             <br />
             <select name="category">
                 <option value={0}>choose a category</option>
-                { foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>)) }
+                {foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>))}
             </select>
             <br />
             <button type="submit">add</button>
         </Form>
-    </>
-  )
+        )}
+        {!isUpdate && (
+            <Form action='/foodcreate' method='POST'>
+                <input type="text" name="name" placeholder="food name" />
+                <br />
+                <select name="category">
+                    <option value={0}>choose a category</option>
+                    {foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>))}
+                </select>
+                <br />
+                <button type="submit">add</button>
+            </Form>
+        )} 
+        </>
+    )
 }
 
-export const foodCreateAction = async ({request}: ActionFunctionArgs) => {
+export const foodCreateAction = async ({ request }: ActionFunctionArgs) => {
     const data = await request.formData()
     const name = data.get('name')
     const category = data.get('category') || 0
