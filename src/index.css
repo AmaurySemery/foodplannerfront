@@ -75,3 +75,8 @@ button:focus-visible {
   color: purple;
   font-weight: bold;
 }
+
+#root > nav > a.nav-link.selected {
+  color: purple;
+  font-weight: bold;
+}
