@@ -36,6 +36,8 @@ function FoodCard({ item }: Props) {
           <h2>Delete {item.name} ?</h2>
           <p>
             Are you sure to delete {item.name} ?
+            <br /><br />
+            <button>Delete</button>{' '} <button onClick={onCloseModal}>Cancel</button>
           </p>
         </Modal>
       </div>
