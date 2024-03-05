@@ -29,7 +29,10 @@ function FoodCard({ item }: Props) {
       <br />
       <div>
         <button onClick={onOpenModal}>Delete</button>
-        <Modal open={open} onClose={onCloseModal} center>
+        <Modal open={open} onClose={onCloseModal} classNames={{
+          overlay: 'customOverlay',
+          modal: 'customModal'
+        }}>
           <h2>Delete {item.name} ?</h2>
           <p>
             Are you sure to delete {item.name} ?
