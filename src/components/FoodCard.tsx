@@ -32,7 +32,7 @@ function FoodCard({ item }: Props) {
         <Modal open={open} onClose={onCloseModal} classNames={{
           overlay: 'customOverlay',
           modal: 'customModal'
-        }}>
+        }} center>
           <h2>Delete {item.name} ?</h2>
           <p>
             Are you sure to delete {item.name} ?
