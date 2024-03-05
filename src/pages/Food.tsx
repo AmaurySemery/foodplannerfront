@@ -49,6 +49,8 @@ const Page = () => {
     })
     const jsonDeleteRes = await deleteRes.json()
     console.log({ jsonDeleteRes })
+    const allFoodAfterDelete = foodList.filter(i => i.id !== id)
+    setFoodList(allFoodAfterDelete)
   }
 
   return (
