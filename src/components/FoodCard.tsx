@@ -7,10 +7,11 @@ import 'react-responsive-modal/styles.css'
 import Modal from "react-responsive-modal"
 
 interface Props {
-  item: FoodItem
+  item: FoodItem;
+  deleteItem: (id: string) => void;
 }
 
-function FoodCard({ item }: Props) {
+function FoodCard({ item, deleteItem }: Props) {
   const [open, setOpen] = useState(false)
 
   const onOpenModal = () => setOpen(true)
@@ -18,6 +19,11 @@ function FoodCard({ item }: Props) {
 
   function niceDate(date: Date): string {
     return date.toISOString().split('T')[0]
+  }
+
+  function deleteFoodItem(id: string) {
+    deleteItem(id)
+    onCloseModal()
   }
 
   return (
@@ -37,7 +43,7 @@ function FoodCard({ item }: Props) {
           <p>
             Are you sure to delete {item.name} ?
             <br /><br />
-            <button>Delete</button>{' '} <button onClick={onCloseModal}>Cancel</button>
+            <button onClick={() => deleteFoodItem(item.id)}>Delete</button>{' '} <button onClick={onCloseModal}>Cancel</button>
           </p>
         </Modal>
       </div>

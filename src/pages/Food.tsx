@@ -39,10 +39,22 @@ const Page = () => {
     })
   }
 
+  async function handleDelete(id:string) {
+    const strapiFoodDeleteUrl = `http://localhost:1337/api/foodlist/${id}`
+    const deleteRes = await fetch(strapiFoodDeleteUrl, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    const jsonDeleteRes = deleteRes.json()
+    console.log({ jsonDeleteRes })
+  }
+
   return (
     <>
     <h3>Food</h3>
-    {foodList && foodList.map(item => (<FoodCard item={item} key={item.id} />))}
+    {foodList && foodList.map(item => (<FoodCard item={item} key={item.id} deleteItem={handleDelete} />))}
     </>
   )
 }
