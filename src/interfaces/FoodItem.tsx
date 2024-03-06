@@ -4,4 +4,5 @@ export default interface FoodItem{
     dateAdded: Date;
     foodCategory: string;
     maxStayInFreezerInMonth: number;
+    eatBeforeDate?: Date;
 }

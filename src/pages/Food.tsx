@@ -3,6 +3,7 @@ import FoodItem from "../interfaces/FoodItem"
 import FoodCard from "../components/FoodCard"
 import { useNavigate } from "react-router-dom"
 import OrderBy from "../components/OrderBy"
+import { add, compareAsc } from "date-fns"
 
 const Page = () => {
   // Le ?populate=* permet d'accéder à la jointure
@@ -21,6 +22,9 @@ const Page = () => {
         case 'nameoff':
           foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`;
           break;
+          case 'eatbefore':
+            foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`;
+            break;
           default:
             console.log('No order param')
     }
@@ -67,7 +71,20 @@ const Page = () => {
   }
 
   function handleOrder(parameter: string) {
-    getFoodList(parameter)
+    if (parameter === 'name' || parameter === 'nameoff' || parameter === 'eatbeforeoff') {
+      getFoodList(parameter)
+    }
+    if (parameter === 'eatbefore') {
+      const itemsWithEatBeforeDate = foodList.map((foodItem: FoodItem) => {
+        const dateInFuture = add(foodItem.dateAdded, {months: foodItem.maxStayInFreezerInMonth})
+        foodItem.eatBeforeDate = dateInFuture
+        return foodItem
+      })
+      const itemSortByDate = itemsWithEatBeforeDate.sort((first: FoodItem, second: FoodItem) => {
+        return compareAsc((first as any).eatBeforeDate, (second as any).eatBeforeDate)
+      })
+      setFoodList(itemSortByDate)
+    }
   }
 
   return (
