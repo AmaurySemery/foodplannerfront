@@ -101,7 +101,7 @@ export const foodCreateAction = async ({ request }: ActionFunctionArgs) => {
 
     const url = isUpdate ? `http://localhost:1337/api/foodlist/${foodId}` : `http://localhost:1337/api/foodlist`
     const createdFoodItem = await fetch(url, {
-        method: isUpdate ? 'PUT ' : 'POST',
+        method: isUpdate ? 'PUT' : 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
