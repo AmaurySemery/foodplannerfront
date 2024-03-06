@@ -60,7 +60,7 @@ const FormCreateFood = ({ item }: Props) => {
                 {foodCategoryList && foodCategoryList.map(categoryItem => (<option value={categoryItem.id} key={categoryItem.id} selected={categoryItem.categoryId === foodItemCategory}>{categoryItem.categoryName}</option>))}
             </select>
             <br />
-            <button type="submit">add</button>
+            <button type="submit">Update</button>
         </Form>
         )}
         {!isUpdate && (
@@ -72,7 +72,7 @@ const FormCreateFood = ({ item }: Props) => {
                     {foodCategoryList && foodCategoryList.map(item => (<option value={item.id} key={item.id}>{item.categoryName}</option>))}
                 </select>
                 <br />
-                <button type="submit">add</button>
+                <button type="submit">Add</button>
             </Form>
         )} 
         </>
