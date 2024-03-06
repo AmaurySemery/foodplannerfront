@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import FoodItem from "../interfaces/FoodItem"
 import FoodCard from "../components/FoodCard"
 import { useNavigate } from "react-router-dom"
+import OrderBy from "../components/OrderBy"
 
 const Page = () => {
   // Le ?populate=* permet d'accéder à la jointure
@@ -55,7 +56,7 @@ const Page = () => {
 
   return (
     <>
-    <h3>Food</h3>
+    <OrderBy />
     {foodList && foodList.map(item => (<FoodCard item={item} key={item.id} deleteItem={handleDelete} />))}
     </>
   )
