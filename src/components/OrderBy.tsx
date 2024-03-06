@@ -1,12 +1,14 @@
+import styles from './orderby.module.css'
+
 function OrderBy() {
     return (
         <>
             <h4>OrderBy</h4>
             <div>
                 Name
-                <label className="switch">
+                <label className={styles.switch}>
                     <input type="checkbox" />
-                    <span className="slider"></span>
+                    <span className={styles.slider}></span>
                 </label>
             </div>
         </>
