@@ -16,7 +16,7 @@ const Page = () => {
   const getFoodList = async (orderParam?: string) => {
     switch(orderParam) {
       case 'name':
-        foodListUrl += `&sort=name:asc`;
+        foodListUrl += `&sort=Name:asc`;
         break;
         case 'nameoff':
           foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`;
