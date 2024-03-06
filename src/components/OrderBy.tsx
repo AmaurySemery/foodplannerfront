@@ -16,6 +16,16 @@ function OrderBy({orderItem}: Props) {
         }
     }
 
+function handleMaxDateChange(e: ChangeEvent & { target: HTMLInputElement }) {
+    console.log('max date change: ', e.target.checked)
+    const isChecked = e.target.checked
+    if (isChecked) {
+        orderItem('eatbefore')
+    } else {
+        orderItem('eatbeforeoff')
+    }
+}
+
     return (
         <>
             <h4>OrderBy</h4>
@@ -29,7 +39,7 @@ function OrderBy({orderItem}: Props) {
             <div className={styles.center}>
                 Max date
                 <label className={styles.switch}>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={e => handleMaxDateChange(e)} />
                     <span className={`${styles.slider} ${styles.round}`}></span>
                 </label>
             </div>
