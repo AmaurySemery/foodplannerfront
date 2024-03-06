@@ -55,9 +55,9 @@ const FormCreateFood = ({ item }: Props) => {
             <input name="food-id" hidden defaultValue={item?.id} />
             <input type="text" name="name" placeholder="food name" value={foodItemName} onChange={onNameChange} />
             <br />
-            <select name="category" value={foodItemCategory} onChange={onCategoryChange}>
+            <select name="category" onChange={onCategoryChange}>
                 <option value={0}>choose a category</option>
-                {foodCategoryList && foodCategoryList.map(categoryItem => (<option value={categoryItem.id} key={categoryItem.id} >{categoryItem.categoryName}</option>))}
+                {foodCategoryList && foodCategoryList.map(categoryItem => (<option value={categoryItem.id} key={categoryItem.id} selected={categoryItem.categoryId === foodItemCategory}>{categoryItem.categoryName}</option>))}
             </select>
             <br />
             <button type="submit">Update</button>
