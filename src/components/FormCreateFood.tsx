@@ -51,6 +51,8 @@ const FormCreateFood = ({ item }: Props) => {
         <>
         {isUpdate && (
             <Form action='/foodcreate' method='POST'>
+            <input name="action-type" hidden defaultValue={isUpdate ? 'food-update' : 'food-create'} />
+            <input name="food-id" hidden defaultValue={item?.id} />
             <input type="text" name="name" placeholder="food name" value={foodItemName} onChange={onNameChange} />
             <br />
             <select name="category" onChange={onCategoryChange}>
@@ -82,6 +84,10 @@ export const foodCreateAction = async ({ request }: ActionFunctionArgs) => {
     const name = data.get('name')
     const category = data.get('category') || 0
 
+    const actionType = data.get('action-type')
+    const foodId = data.get('food-id')
+    const isUpdate = actionType === 'food-update' ? true : false
+
     const email = localStorage.getItem('logged-in-user-email')
 
     const foodItem = {
@@ -93,9 +99,9 @@ export const foodCreateAction = async ({ request }: ActionFunctionArgs) => {
         }
     }
 
-    const strapiFoodCreateUrl = 'http://localhost:1337/api/foodlist'
-    const createdFoodItem = await fetch(strapiFoodCreateUrl, {
-        method: 'POST',
+    const url = isUpdate ? `http://localhost:1337/api/foodlist/${foodId}` : `http://localhost:1337/api/foodlist`
+    const createdFoodItem = await fetch(url, {
+        method: isUpdate ? 'PUT ' : 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
