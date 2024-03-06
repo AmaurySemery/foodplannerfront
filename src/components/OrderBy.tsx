@@ -1,6 +1,10 @@
 import styles from './orderby.module.css'
 
-function OrderBy() {
+interface Props {
+    orderItem: (parameter: string) => void;
+}
+
+function OrderBy({orderItem}: Props) {
     return (
         <>
             <h4>OrderBy</h4>

@@ -10,18 +10,30 @@ const Page = () => {
   const navigate = useNavigate()
   const anonymous = 'ano@t.fr'
   const ownerEmail = localStorage.getItem('logged-in-user-email') || anonymous
-  const foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`
+  let foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`
   const [foodList, setFoodList] = useState<FoodItem[]>([])
+  
+  const getFoodList = async (orderParam?: string) => {
+    switch(orderParam) {
+      case 'name':
+        foodListUrl += `&sort=name:asc`;
+        break;
+        case 'nameoff':
+          foodListUrl = `http://localhost:1337/api/foodlist?populate=*&filters[Email][$eq]=${ownerEmail}`;
+          break;
+          default:
+            console.log('No order param')
+    }
+    const res = await fetch(foodListUrl)
+    const jsonData = await res.json()
+    console.log({jsonData})
+    const parsedResult = foodItemsFormJson(jsonData.data)
+    setFoodList(parsedResult)
+  }
+  
   useEffect(() => {
     if (ownerEmail === anonymous) {
       navigate('/login')
-    }
-    const getFoodList = async () => {
-      const res = await fetch(foodListUrl)
-      const jsonData = await res.json()
-      console.log({jsonData})
-      const parsedResult = foodItemsFormJson(jsonData.data)
-      setFoodList(parsedResult)
     }
     getFoodList()
   }, [])
@@ -54,9 +66,13 @@ const Page = () => {
     setFoodList(allFoodAfterDelete)
   }
 
+  function handleOrder(parameter: string) {
+    getFoodList(parameter)
+  }
+
   return (
     <>
-    <OrderBy />
+    <OrderBy orderItem={handleOrder} />
     {foodList && foodList.map(item => (<FoodCard item={item} key={item.id} deleteItem={handleDelete} />))}
     </>
   )
