@@ -8,7 +8,7 @@ function OrderBy() {
                 Name
                 <label className={styles.switch}>
                     <input type="checkbox" />
-                    <span className={styles.slider}></span>
+                    <span className={`${styles.slider} ${styles.round}`}></span>
                 </label>
             </div>
         </>
